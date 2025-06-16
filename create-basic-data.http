@@ -1,0 +1,219 @@
+@graphqlUrl = http://localhost:8081/graphql
+@mongoUrl = mongodb://admin:password@localhost:27017
+
+### ========================================
+### CRIAR DADOS BÁSICOS PARA TESTES
+### ========================================
+
+### Inserir Talhões no MongoDB
+POST {{graphqlUrl}}
+Content-Type: application/json
+
+{
+  "query": "mutation { __schema { queryType { name } } }"
+}
+
+### Inserir alguns dados básicos diretamente via MongoDB
+### (Execute estes comandos diretamente no MongoDB)
+
+### Comando para MongoDB - Inserir Talhões
+# db.talhoes.insertMany([
+#   {
+#     "_id": ObjectId("683859813a9c1c7158d861e1"),
+#     "nome": "Talhão Norte",
+#     "area_hectares": 12.5,
+#     "cultura": "Soja",
+#     "variedade": "BMX Turbo RR",
+#     "coordenadas_geograficas": "-25.4284,-49.2733",
+#     "created_at": new Date(),
+#     "updated_at": new Date()
+#   },
+#   {
+#     "_id": ObjectId("683859813a9c1c7158d861e2"),
+#     "nome": "Campo Sul",
+#     "area_hectares": 8.3,
+#     "cultura": "Milho",
+#     "variedade": "Pioneer 30F53",
+#     "coordenadas_geograficas": "-25.4350,-49.2800",
+#     "created_at": new Date(),
+#     "updated_at": new Date()
+#   },
+#   {
+#     "_id": ObjectId("683859813a9c1c7158d861e3"),
+#     "nome": "Fazenda Modelo",
+#     "area_hectares": 15.7,
+#     "cultura": "Soja",
+#     "variedade": "NS 5959 IPRO",
+#     "coordenadas_geograficas": "-25.4295,-49.2715",
+#     "created_at": new Date(),
+#     "updated_at": new Date()
+#   }
+# ])
+
+### Comando para MongoDB - Inserir Equipamentos
+# db.equipamentos.insertMany([
+#   {
+#     "_id": ObjectId("507f1f77bcf86cd799439011"),
+#     "nome": "Pulverizador Jacto Uniport 3030",
+#     "modelo": "Uniport 3030",
+#     "fabricante": "Jacto",
+#     "ano_fabricacao": 2022,
+#     "largura_barra": 28.0,
+#     "capacidade_tanque": 3000.0,
+#     "numero_serie": "JP3030-2022-001",
+#     "created_at": new Date(),
+#     "updated_at": new Date()
+#   },
+#   {
+#     "_id": ObjectId("507f1f77bcf86cd799439012"),
+#     "nome": "Pulverizador John Deere R4030",
+#     "modelo": "R4030",
+#     "fabricante": "John Deere",
+#     "ano_fabricacao": 2021,
+#     "largura_barra": 36.0,
+#     "capacidade_tanque": 4500.0,
+#     "numero_serie": "JD4030-2021-002",
+#     "created_at": new Date(),
+#     "updated_at": new Date()
+#   }
+# ])
+
+### Comando para MongoDB - Inserir Tipos de Aplicação
+# db.tipos_aplicacao.insertMany([
+#   {
+#     "_id": ObjectId("507f1f77bcf86cd799439013"),
+#     "nome": "Herbicida Pós-Emergente",
+#     "descricao": "Aplicação de herbicida após emergência da cultura",
+#     "vazao_padrao": 150.0,
+#     "tipo_produto": "Herbicida",
+#     "unidade_medida": "L/ha",
+#     "created_at": new Date(),
+#     "updated_at": new Date()
+#   },
+#   {
+#     "_id": ObjectId("507f1f77bcf86cd799439014"),
+#     "nome": "Fungicida Preventivo",
+#     "descricao": "Aplicação preventiva de fungicida",
+#     "vazao_padrao": 100.0,
+#     "tipo_produto": "Fungicida",
+#     "unidade_medida": "L/ha",
+#     "created_at": new Date(),
+#     "updated_at": new Date()
+#   },
+#   {
+#     "_id": ObjectId("507f1f77bcf86cd799439015"),
+#     "nome": "Inseticida Sistêmico",
+#     "descricao": "Aplicação de inseticida de ação sistêmica",
+#     "vazao_padrao": 80.0,
+#     "tipo_produto": "Inseticida",
+#     "unidade_medida": "L/ha",
+#     "created_at": new Date(),
+#     "updated_at": new Date()
+#   }
+# ])
+
+### Para executar os comandos MongoDB via linha de comando:
+### docker exec -it spray-mongodb mongosh pulverizacao
+
+### Ou use este script para inserir os dados:
+### COPY AND PASTE INTO MONGODB SHELL:
+
+use pulverizacao
+
+db.talhoes.insertMany([
+  {
+    "_id": ObjectId("683859813a9c1c7158d861e1"),
+    "nome": "Talhão Norte",
+    "area_hectares": 12.5,
+    "cultura": "Soja",
+    "variedade": "BMX Turbo RR",
+    "coordenadas_geograficas": "-25.4284,-49.2733",
+    "created_at": new Date(),
+    "updated_at": new Date()
+  },
+  {
+    "_id": ObjectId("683859813a9c1c7158d861e2"),
+    "nome": "Campo Sul",
+    "area_hectares": 8.3,
+    "cultura": "Milho",
+    "variedade": "Pioneer 30F53",
+    "coordenadas_geograficas": "-25.4350,-49.2800",
+    "created_at": new Date(),
+    "updated_at": new Date()
+  },
+  {
+    "_id": ObjectId("683859813a9c1c7158d861e3"),
+    "nome": "Fazenda Modelo",
+    "area_hectares": 15.7,
+    "cultura": "Soja",
+    "variedade": "NS 5959 IPRO",
+    "coordenadas_geograficas": "-25.4295,-49.2715",
+    "created_at": new Date(),
+    "updated_at": new Date()
+  }
+])
+
+db.equipamentos.insertMany([
+  {
+    "_id": ObjectId("507f1f77bcf86cd799439011"),
+    "nome": "Pulverizador Jacto Uniport 3030",
+    "modelo": "Uniport 3030",
+    "fabricante": "Jacto",
+    "ano_fabricacao": 2022,
+    "largura_barra": 28.0,
+    "capacidade_tanque": 3000.0,
+    "numero_serie": "JP3030-2022-001",
+    "created_at": new Date(),
+    "updated_at": new Date()
+  },
+  {
+    "_id": ObjectId("507f1f77bcf86cd799439012"),
+    "nome": "Pulverizador John Deere R4030",
+    "modelo": "R4030",
+    "fabricante": "John Deere",
+    "ano_fabricacao": 2021,
+    "largura_barra": 36.0,
+    "capacidade_tanque": 4500.0,
+    "numero_serie": "JD4030-2021-002",
+    "created_at": new Date(),
+    "updated_at": new Date()
+  }
+])
+
+db.tipos_aplicacao.insertMany([
+  {
+    "_id": ObjectId("507f1f77bcf86cd799439013"),
+    "nome": "Herbicida Pós-Emergente",
+    "descricao": "Aplicação de herbicida após emergência da cultura",
+    "vazao_padrao": 150.0,
+    "tipo_produto": "Herbicida",
+    "unidade_medida": "L/ha",
+    "created_at": new Date(),
+    "updated_at": new Date()
+  },
+  {
+    "_id": ObjectId("507f1f77bcf86cd799439014"),
+    "nome": "Fungicida Preventivo",
+    "descricao": "Aplicação preventiva de fungicida",
+    "vazao_padrao": 100.0,
+    "tipo_produto": "Fungicida",
+    "unidade_medida": "L/ha",
+    "created_at": new Date(),
+    "updated_at": new Date()
+  },
+  {
+    "_id": ObjectId("507f1f77bcf86cd799439015"),
+    "nome": "Inseticida Sistêmico",
+    "descricao": "Aplicação de inseticida de ação sistêmica",
+    "vazao_padrao": 80.0,
+    "tipo_produto": "Inseticida",
+    "unidade_medida": "L/ha",
+    "created_at": new Date(),
+    "updated_at": new Date()
+  }
+])
+
+### Verificar se os dados foram inseridos:
+db.talhoes.find().pretty()
+db.equipamentos.find().pretty()
+db.tipos_aplicacao.find().pretty()
