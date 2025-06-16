@@ -1,0 +1,60 @@
+services:
+  # Production Frontend with Nginx
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    container_name: spray-frontend-prod
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - spring-api
+      - graphql-api
+    networks:
+      - spray-network
+    restart: always
+
+  # Spring Boot API
+  spring-api:
+    image: spray-spring-api:latest
+    container_name: spray-spring-api-prod
+    environment:
+      SPRING_PROFILES_ACTIVE: production
+      SPRING_DATASOURCE_URL: ${DATABASE_URL}
+      AWS_COGNITO_REGION: ${AWS_COGNITO_REGION}
+      AWS_COGNITO_URL: ${AWS_COGNITO_URL}
+      AWS_COGNITO_USER_POOL_ID: ${AWS_COGNITO_USER_POOL_ID}
+      AWS_COGNITO_CLIENT_ID: ${AWS_COGNITO_CLIENT_ID}
+      AWS_COGNITO_CLIENT_SECRET: ${AWS_COGNITO_CLIENT_SECRET}
+    networks:
+      - spray-network
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+
+  # GraphQL API
+  graphql-api:
+    image: spray-graphql-api:latest
+    container_name: spray-graphql-api-prod
+    environment:
+      MONGO_URI: ${MONGO_URI}
+      DATABASE_NAME: ${DATABASE_NAME}
+      PORT: 8080
+    networks:
+      - spray-network
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+
+networks:
+  spray-network:
+    driver: bridge
