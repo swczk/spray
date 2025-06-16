@@ -1,9 +1,7 @@
 services:
   # Production Frontend with Nginx
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile.prod
+    image: swczk/pulveriza-nenem-frontend:latest
     container_name: spray-frontend-prod
     ports:
       - "80:80"
@@ -19,7 +17,7 @@ services:
 
   # Spring Boot API
   spring-api:
-    image: spray-spring-api:latest
+    image: swczk/pulveriza-nenem-spring-api:latest
     container_name: spray-spring-api-prod
     environment:
       SPRING_PROFILES_ACTIVE: production
@@ -40,7 +38,7 @@ services:
 
   # GraphQL API
   graphql-api:
-    image: spray-graphql-api:latest
+    image: swczk/pulveriza-nenem-graphql-api:latest
     container_name: spray-graphql-api-prod
     environment:
       MONGO_URI: ${MONGO_URI}
