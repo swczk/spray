@@ -1,0 +1,9 @@
+[submodule "backend-graphql"]
+	path = backend-graphql
+	url = git@github.com:swczk/pulverizacao-api.git
+[submodule "backend-spring"]
+	path = backend-spring
+	url = git@github.com:swczk/spring-boot-api1.git
+[submodule "frontend"]
+	path = frontend
+	url = git@github.com:swczk/pulveriza-nenem-front.git
