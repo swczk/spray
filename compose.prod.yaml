@@ -1,3 +1,6 @@
+# Production Docker Compose Configuration
+# Before running: cp .env.prod.example .env.prod and configure your values
+
 services:
   # Production Frontend with Nginx
   frontend:
@@ -41,9 +44,31 @@ services:
     image: swczk/pulveriza-nenem-graphql-api:latest
     container_name: spray-graphql-api-prod
     environment:
-      MONGO_URI: ${MONGO_URI}
+      MONGO_URI: mongodb://admin:${MONGO_PASSWORD:-password}@mongodb:27017
       DATABASE_NAME: ${DATABASE_NAME}
       PORT: 8080
+    networks:
+      - spray-network
+    restart: always
+    depends_on:
+      - mongodb
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+
+  # MongoDB Database
+  mongodb:
+    image: mongo:7-jammy
+    container_name: spray-mongodb-prod
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD:-password}
+      MONGO_INITDB_DATABASE: ${DATABASE_NAME}
+    volumes:
+      - mongodb_data:/data/db
+      - ./backend-graphql/scripts/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
     networks:
       - spray-network
     restart: always
@@ -51,8 +76,15 @@ services:
       resources:
         limits:
           cpus: '0.5'
-          memory: 256M
+          memory: 512M
+
+volumes:
+  mongodb_data:
+    driver: local
 
 networks:
   spray-network:
     driver: bridge
+
+# Load environment variables from .env.prod file
+# Create .env.prod from .env.prod.example and configure your values

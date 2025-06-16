@@ -73,18 +73,63 @@ docker push swczk/pulveriza-nenem-frontend:latest
 
 ## Deploy em Produção
 
+### 1. Configurar Variáveis de Ambiente
+
+**Opção A: Usar arquivo pré-configurado (recomendado)**
+```bash
+# O arquivo .env.prod já está criado com valores das configurações existentes
+# Verifique se está correto:
+./scripts/test-env.sh
+```
+
+**Opção B: Criar do zero**
+```bash
+# Usar script de configuração
+./scripts/setup-prod.sh
+
+# Ou copiar manualmente
+cp .env.prod.example .env.prod
+
+# Editar com suas configurações
+nano .env.prod
+```
+
+### 2. Executar Deploy
+
 ```bash
 # Usar as imagens do Docker Hub
-docker-compose -f compose.prod.yaml up -d
+docker compose -f compose.prod.yaml --env-file .env.prod up -d
 
 # Verificar status
-docker-compose -f compose.prod.yaml ps
+docker compose -f compose.prod.yaml ps
 
 # Ver logs
-docker-compose -f compose.prod.yaml logs -f
+docker compose -f compose.prod.yaml logs -f
 
 # Parar serviços
-docker-compose -f compose.prod.yaml down
+docker compose -f compose.prod.yaml down
+```
+
+### 3. Variáveis Obrigatórias
+
+Edite o arquivo `.env.prod` com os seguintes valores:
+
+```bash
+# Spring Boot Database
+DATABASE_URL=jdbc:postgresql://host:port/database
+
+# AWS Cognito (se usando autenticação AWS)
+AWS_COGNITO_REGION=us-east-1
+AWS_COGNITO_URL=https://cognito-idp.region.amazonaws.com
+AWS_COGNITO_USER_POOL_ID=us-east-1_xxxxxxxxx
+AWS_COGNITO_CLIENT_ID=xxxxxxxxxx
+AWS_COGNITO_CLIENT_SECRET=xxxxxxxxxx
+
+# MongoDB para GraphQL (Container Local)
+MONGO_PASSWORD=sua_senha_segura_mongodb
+DATABASE_NAME=pulverizacao
+
+# Nota: O MongoDB roda como container, MONGO_URI é configurado automaticamente
 ```
 
 ## Comandos Úteis

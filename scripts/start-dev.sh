@@ -54,21 +54,21 @@ echo "Waiting for services to be ready..."
 for i in {1..12}; do
     sleep 5
     echo "Checking services... ($i/12)"
-    if docker-compose -f "$COMPOSE_FILE" ps | grep -q "Up"; then
+    if docker compose -f "$COMPOSE_FILE" ps | grep -q "Up"; then
         echo "Services are starting up..."
     fi
 done
 
 # Check service health
 echo "Final service status:"
-docker-compose -f "$COMPOSE_FILE" ps
+docker compose -f "$COMPOSE_FILE" ps
 
 # Verify critical services are running
-if ! docker-compose -f "$COMPOSE_FILE" ps | grep -q "spray-spring-api.*Up"; then
+if ! docker compose -f "$COMPOSE_FILE" ps | grep -q "spray-spring-api.*Up"; then
     error_exit "Spring API failed to start"
 fi
 
-if ! docker-compose -f "$COMPOSE_FILE" ps | grep -q "spray-frontend.*Up"; then
+if ! docker compose -f "$COMPOSE_FILE" ps | grep -q "spray-frontend.*Up"; then
     error_exit "Frontend failed to start"
 fi
 
