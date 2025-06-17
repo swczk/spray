@@ -1,5 +1,7 @@
 # Production Docker Compose Configuration
-# Before running: cp .env.prod.example .env.prod and configure your values
+# Uses only 3 containers: frontend, spring-api, and graphql-api
+# External services: MongoDB Atlas and remote PostgreSQL
+# Uses .env.prod file for configuration
 
 services:
   # Production Frontend with Nginx
@@ -25,6 +27,8 @@ services:
     environment:
       SPRING_PROFILES_ACTIVE: production
       SPRING_DATASOURCE_URL: ${DATABASE_URL}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
       AWS_COGNITO_REGION: ${AWS_COGNITO_REGION}
       AWS_COGNITO_URL: ${AWS_COGNITO_URL}
       AWS_COGNITO_USER_POOL_ID: ${AWS_COGNITO_USER_POOL_ID}
@@ -44,47 +48,23 @@ services:
     image: swczk/pulveriza-nenem-graphql-api:latest
     container_name: spray-graphql-api-prod
     environment:
-      MONGO_URI: mongodb://admin:${MONGO_PASSWORD:-password}@mongodb:27017
-      DATABASE_NAME: ${DATABASE_NAME}
+      MONGO_URI: ${MONGO_URI}
+      MONGO_DATABASE: ${MONGO_DATABASE}
       PORT: 8080
     networks:
       - spray-network
     restart: always
-    depends_on:
-      - mongodb
     deploy:
       resources:
         limits:
           cpus: '0.5'
           memory: 256M
 
-  # MongoDB Database
-  mongodb:
-    image: mongo:7-jammy
-    container_name: spray-mongodb-prod
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD:-password}
-      MONGO_INITDB_DATABASE: ${DATABASE_NAME}
-    volumes:
-      - mongodb_data:/data/db
-      - ./backend-graphql/scripts/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
-    networks:
-      - spray-network
-    restart: always
-    deploy:
-      resources:
-        limits:
-          cpus: '0.5'
-          memory: 512M
-
-volumes:
-  mongodb_data:
-    driver: local
 
 networks:
   spray-network:
     driver: bridge
 
-# Load environment variables from .env.prod file
-# Create .env.prod from .env.prod.example and configure your values
+# Environment variables loaded from .env.prod
+# Configure .env.prod with your MongoDB Atlas and remote PostgreSQL credentials
+# Run: docker compose --env-file .env.prod -f compose.prod.yaml up

@@ -1,3 +1,6 @@
+# Development environment using local databases
+# Uses .env.dev file for configuration
+
 services:
   # PostgreSQL Database for Spring Boot API
   postgres:
@@ -79,7 +82,7 @@ services:
     container_name: spray-graphql-api
     environment:
       MONGO_URI: mongodb://${MONGO_ROOT_USERNAME:-admin}:${MONGO_ROOT_PASSWORD:-password}@mongodb:27017
-      DATABASE_NAME: ${MONGO_DATABASE:-pulverizacao}
+      MONGO_DATABASE: ${MONGO_DATABASE:-pulverizacao}
       PORT: 8080
     ports:
       - "8081:8080"
@@ -138,7 +141,7 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_ROOT_USERNAME:-admin}
       ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_ROOT_PASSWORD:-password}
-      ME_CONFIG_MONGODB_URL: mongodb://admin:password@mongodb:27017/
+      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_ROOT_USERNAME:-admin}:${MONGO_ROOT_PASSWORD:-password}@mongodb:27017/
       ME_CONFIG_BASICAUTH_USERNAME: ${MONGOEXPRESS_LOGIN:-admin}
       ME_CONFIG_BASICAUTH_PASSWORD: ${MONGOEXPRESS_PASSWORD:-pass}
     depends_on:
@@ -156,3 +159,6 @@ volumes:
     driver: local
   mongodb_data:
     driver: local
+
+# Environment variables loaded from .env.dev
+# Run: docker compose --env-file .env.dev -f compose.dev.yaml up

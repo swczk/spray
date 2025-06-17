@@ -1,0 +1,123 @@
+[
+  {
+    "aplicacaoId": "950e8400-e29b-41d4-a716-446655440001",
+    "pontoInicial": {
+      "latitude": -25.0945,
+      "longitude": -50.1593,
+      "timestamp": "2024-11-02T08:00:00.000Z",
+      "altitude": 850,
+      "speed": 15,
+      "accuracy": 3
+    },
+    "pontoFinal": {
+      "latitude": -25.0920,
+      "longitude": -50.1550,
+      "timestamp": "2024-11-02T12:30:00.000Z",
+      "altitude": 855,
+      "speed": 0,
+      "accuracy": 2
+    },
+    "trajetoria": [
+      {"latitude": -25.0945, "longitude": -50.1593, "timestamp": "2024-11-02T08:00:00.000Z", "altitude": 850, "speed": 15, "accuracy": 3},
+      {"latitude": -25.0944, "longitude": -50.1591, "timestamp": "2024-11-02T08:03:20.000Z", "altitude": 851, "speed": 14.5, "accuracy": 2.8},
+      {"latitude": -25.0943, "longitude": -50.1589, "timestamp": "2024-11-02T08:06:40.000Z", "altitude": 851.5, "speed": 15.2, "accuracy": 3.1},
+      {"latitude": -25.0942, "longitude": -50.1587, "timestamp": "2024-11-02T08:10:00.000Z", "altitude": 852, "speed": 14.8, "accuracy": 2.9},
+      {"latitude": -25.0941, "longitude": -50.1585, "timestamp": "2024-11-02T08:13:20.000Z", "altitude": 852.5, "speed": 15.1, "accuracy": 3.2},
+      {"latitude": -25.0940, "longitude": -50.1583, "timestamp": "2024-11-02T08:16:40.000Z", "altitude": 853, "speed": 14.7, "accuracy": 2.7},
+      {"latitude": -25.0938, "longitude": -50.1580, "timestamp": "2024-11-02T08:20:00.000Z", "altitude": 853.5, "speed": 15.3, "accuracy": 3.0},
+      {"latitude": -25.0936, "longitude": -50.1577, "timestamp": "2024-11-02T08:23:20.000Z", "altitude": 854, "speed": 14.9, "accuracy": 2.8},
+      {"latitude": -25.0934, "longitude": -50.1574, "timestamp": "2024-11-02T08:26:40.000Z", "altitude": 854.2, "speed": 15.0, "accuracy": 3.1},
+      {"latitude": -25.0932, "longitude": -50.1571, "timestamp": "2024-11-02T08:30:00.000Z", "altitude": 854.5, "speed": 14.6, "accuracy": 2.9},
+      {"latitude": -25.0930, "longitude": -50.1568, "timestamp": "2024-11-02T08:33:20.000Z", "altitude": 854.8, "speed": 15.2, "accuracy": 3.0},
+      {"latitude": -25.0928, "longitude": -50.1565, "timestamp": "2024-11-02T08:36:40.000Z", "altitude": 855, "speed": 14.8, "accuracy": 2.7},
+      {"latitude": -25.0926, "longitude": -50.1562, "timestamp": "2024-11-02T08:40:00.000Z", "altitude": 855.2, "speed": 15.1, "accuracy": 3.2},
+      {"latitude": -25.0924, "longitude": -50.1559, "timestamp": "2024-11-02T08:43:20.000Z", "altitude": 855.5, "speed": 14.9, "accuracy": 2.8},
+      {"latitude": -25.0922, "longitude": -50.1556, "timestamp": "2024-11-02T08:46:40.000Z", "altitude": 855.8, "speed": 15.0, "accuracy": 3.1},
+      {"latitude": -25.0921, "longitude": -50.1553, "timestamp": "2024-11-02T08:50:00.000Z", "altitude": 856, "speed": 14.7, "accuracy": 2.9},
+      {"latitude": -25.0920, "longitude": -50.1550, "timestamp": "2024-11-02T12:30:00.000Z", "altitude": 855, "speed": 0, "accuracy": 2}
+    ],
+    "areaCobertura": 25.5,
+    "distanciaPercorrida": 2850,
+    "createdAt": "2024-12-17T17:35:00.000Z",
+    "updatedAt": "2024-12-17T17:35:00.000Z"
+  },
+  {
+    "aplicacaoId": "950e8400-e29b-41d4-a716-446655440002",
+    "pontoInicial": {
+      "latitude": -25.1045,
+      "longitude": -50.1693,
+      "timestamp": "2024-11-09T07:30:00.000Z",
+      "altitude": 845,
+      "speed": 14,
+      "accuracy": 2
+    },
+    "pontoFinal": {
+      "latitude": -25.1015,
+      "longitude": -50.1645,
+      "timestamp": "2024-11-09T11:45:00.000Z",
+      "altitude": 848,
+      "speed": 0,
+      "accuracy": 3
+    },
+    "trajetoria": [
+      {"latitude": -25.1045, "longitude": -50.1693, "timestamp": "2024-11-09T07:30:00.000Z", "altitude": 845, "speed": 14, "accuracy": 2},
+      {"latitude": -25.1043, "longitude": -50.1690, "timestamp": "2024-11-09T07:33:40.000Z", "altitude": 845.3, "speed": 13.8, "accuracy": 2.1},
+      {"latitude": -25.1041, "longitude": -50.1687, "timestamp": "2024-11-09T07:37:20.000Z", "altitude": 845.6, "speed": 14.2, "accuracy": 1.9},
+      {"latitude": -25.1039, "longitude": -50.1684, "timestamp": "2024-11-09T07:41:00.000Z", "altitude": 845.9, "speed": 13.9, "accuracy": 2.2},
+      {"latitude": -25.1037, "longitude": -50.1681, "timestamp": "2024-11-09T07:44:40.000Z", "altitude": 846.2, "speed": 14.1, "accuracy": 2.0},
+      {"latitude": -25.1035, "longitude": -50.1678, "timestamp": "2024-11-09T07:48:20.000Z", "altitude": 846.5, "speed": 13.7, "accuracy": 2.3},
+      {"latitude": -25.1033, "longitude": -50.1675, "timestamp": "2024-11-09T07:52:00.000Z", "altitude": 846.8, "speed": 14.3, "accuracy": 1.8},
+      {"latitude": -25.1031, "longitude": -50.1672, "timestamp": "2024-11-09T07:55:40.000Z", "altitude": 847.1, "speed": 14.0, "accuracy": 2.1},
+      {"latitude": -25.1029, "longitude": -50.1669, "timestamp": "2024-11-09T07:59:20.000Z", "altitude": 847.4, "speed": 13.8, "accuracy": 2.2},
+      {"latitude": -25.1027, "longitude": -50.1666, "timestamp": "2024-11-09T08:03:00.000Z", "altitude": 847.7, "speed": 14.2, "accuracy": 1.9},
+      {"latitude": -25.1025, "longitude": -50.1663, "timestamp": "2024-11-09T08:06:40.000Z", "altitude": 848.0, "speed": 13.9, "accuracy": 2.0},
+      {"latitude": -25.1023, "longitude": -50.1660, "timestamp": "2024-11-09T08:10:20.000Z", "altitude": 848.2, "speed": 14.1, "accuracy": 2.3},
+      {"latitude": -25.1021, "longitude": -50.1657, "timestamp": "2024-11-09T08:14:00.000Z", "altitude": 848.4, "speed": 13.7, "accuracy": 2.1},
+      {"latitude": -25.1019, "longitude": -50.1654, "timestamp": "2024-11-09T08:17:40.000Z", "altitude": 848.6, "speed": 14.0, "accuracy": 1.8},
+      {"latitude": -25.1017, "longitude": -50.1651, "timestamp": "2024-11-09T08:21:20.000Z", "altitude": 848.8, "speed": 13.8, "accuracy": 2.2},
+      {"latitude": -25.1016, "longitude": -50.1648, "timestamp": "2024-11-09T08:25:00.000Z", "altitude": 849.0, "speed": 14.2, "accuracy": 2.0},
+      {"latitude": -25.1015, "longitude": -50.1645, "timestamp": "2024-11-09T11:45:00.000Z", "altitude": 848, "speed": 0, "accuracy": 3}
+    ],
+    "areaCobertura": 32.8,
+    "distanciaPercorrida": 3680,
+    "createdAt": "2024-12-17T17:35:00.000Z",
+    "updatedAt": "2024-12-17T17:35:00.000Z"
+  },
+  {
+    "aplicacaoId": "950e8400-e29b-41d4-a716-446655440003",
+    "pontoInicial": {
+      "latitude": -25.0845,
+      "longitude": -50.1493,
+      "timestamp": "2024-11-15T09:00:00.000Z",
+      "altitude": 855,
+      "speed": 16,
+      "accuracy": 2
+    },
+    "pontoFinal": {
+      "latitude": -25.0825,
+      "longitude": -50.1460,
+      "timestamp": "2024-11-15T12:00:00.000Z",
+      "altitude": 860,
+      "speed": 0,
+      "accuracy": 4
+    },
+    "trajetoria": [
+      {"latitude": -25.0845, "longitude": -50.1493, "timestamp": "2024-11-15T09:00:00.000Z", "altitude": 855, "speed": 16, "accuracy": 2},
+      {"latitude": -25.0843, "longitude": -50.1490, "timestamp": "2024-11-15T09:03:00.000Z", "altitude": 855.5, "speed": 15.8, "accuracy": 2.1},
+      {"latitude": -25.0841, "longitude": -50.1487, "timestamp": "2024-11-15T09:06:00.000Z", "altitude": 856, "speed": 16.2, "accuracy": 1.9},
+      {"latitude": -25.0839, "longitude": -50.1484, "timestamp": "2024-11-15T09:09:00.000Z", "altitude": 856.5, "speed": 15.9, "accuracy": 2.2},
+      {"latitude": -25.0837, "longitude": -50.1481, "timestamp": "2024-11-15T09:12:00.000Z", "altitude": 857, "speed": 16.1, "accuracy": 2.0},
+      {"latitude": -25.0835, "longitude": -50.1478, "timestamp": "2024-11-15T09:15:00.000Z", "altitude": 857.5, "speed": 15.7, "accuracy": 2.3},
+      {"latitude": -25.0833, "longitude": -50.1475, "timestamp": "2024-11-15T09:18:00.000Z", "altitude": 858, "speed": 16.3, "accuracy": 1.8},
+      {"latitude": -25.0831, "longitude": -50.1472, "timestamp": "2024-11-15T09:21:00.000Z", "altitude": 858.5, "speed": 16.0, "accuracy": 2.1},
+      {"latitude": -25.0829, "longitude": -50.1469, "timestamp": "2024-11-15T09:24:00.000Z", "altitude": 859, "speed": 15.8, "accuracy": 2.2},
+      {"latitude": -25.0827, "longitude": -50.1466, "timestamp": "2024-11-15T09:27:00.000Z", "altitude": 859.5, "speed": 16.2, "accuracy": 1.9},
+      {"latitude": -25.0826, "longitude": -50.1463, "timestamp": "2024-11-15T09:30:00.000Z", "altitude": 860, "speed": 15.9, "accuracy": 2.0},
+      {"latitude": -25.0825, "longitude": -50.1460, "timestamp": "2024-11-15T12:00:00.000Z", "altitude": 860, "speed": 0, "accuracy": 4}
+    ],
+    "areaCobertura": 18.2,
+    "distanciaPercorrida": 2040,
+    "createdAt": "2024-12-17T17:35:00.000Z",
+    "updatedAt": "2024-12-17T17:35:00.000Z"
+  }
+]
