@@ -1,8 +1,4 @@
-# Development environment using local databases
-# Uses .env.dev file for configuration
-
 services:
-  # PostgreSQL Database for Spring Boot API
   postgres:
     image: postgres:15-alpine
     container_name: spray-postgres
@@ -22,7 +18,6 @@ services:
       timeout: 10s
       retries: 3
 
-  # MongoDB for GraphQL API
   mongodb:
     image: mongo:7.0
     container_name: spray-mongodb
@@ -42,7 +37,6 @@ services:
       timeout: 10s
       retries: 3
 
-  # Spring Boot API
   spring-api:
     build:
       context: ./backend-spring
@@ -74,7 +68,6 @@ services:
       retries: 5
       start_period: 60s
 
-  # GraphQL API
   graphql-api:
     build:
       context: ./backend-graphql
@@ -99,7 +92,6 @@ services:
       retries: 5
       start_period: 60s
 
-  # Vue.js Frontend
   frontend:
     build:
       context: ./frontend
@@ -121,7 +113,6 @@ services:
       timeout: 10s
       retries: 3
 
-  # Database Management Tools
   adminer:
     image: adminer:4.8.1
     container_name: spray-adminer
@@ -150,15 +141,12 @@ services:
       - spray-network
     restart: unless-stopped
 
-networks:
-  spray-network:
-    driver: bridge
-
 volumes:
   postgres_data:
     driver: local
   mongodb_data:
     driver: local
 
-# Environment variables loaded from .env.dev
-# Run: docker compose --env-file .env.dev -f compose.dev.yaml up
+networks:
+  spray-network:
+    driver: bridge

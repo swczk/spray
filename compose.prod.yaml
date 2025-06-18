@@ -1,18 +1,9 @@
-# Production Docker Compose Configuration
-# Uses only 3 containers: frontend, spring-api, and graphql-api
-# External services: MongoDB Atlas and remote PostgreSQL
-# Uses .env.prod file for configuration
-
 services:
-  # Production Frontend with Nginx
   frontend:
     image: swczk/pulveriza-nenem-frontend:latest
     container_name: spray-frontend-prod
     ports:
       - "80:80"
-      - "443:443"
-    volumes:
-      - ./ssl:/etc/nginx/ssl:ro
     depends_on:
       - spring-api
       - graphql-api
@@ -20,36 +11,34 @@ services:
       - spray-network
     restart: always
 
-  # Spring Boot API
   spring-api:
     image: swczk/pulveriza-nenem-spring-api:latest
     container_name: spray-spring-api-prod
     environment:
       SPRING_PROFILES_ACTIVE: production
-      SPRING_DATASOURCE_URL: ${DATABASE_URL}
-      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
-      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
-      AWS_COGNITO_REGION: ${AWS_COGNITO_REGION}
-      AWS_COGNITO_URL: ${AWS_COGNITO_URL}
-      AWS_COGNITO_USER_POOL_ID: ${AWS_COGNITO_USER_POOL_ID}
-      AWS_COGNITO_CLIENT_ID: ${AWS_COGNITO_CLIENT_ID}
-      AWS_COGNITO_CLIENT_SECRET: ${AWS_COGNITO_CLIENT_SECRET}
-    networks:
-      - spray-network
-    restart: always
+      SPRING_DATASOURCE_URL: ${DATABASE_URL:?DATABASE_URL is required}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER:?POSTGRES_USER is required}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD is required}
+      AWS_COGNITO_REGION: ${AWS_COGNITO_REGION:?AWS_COGNITO_REGION is required}
+      AWS_COGNITO_URL: ${AWS_COGNITO_URL:?AWS_COGNITO_URL is required}
+      AWS_COGNITO_USER_POOL_ID: ${AWS_COGNITO_USER_POOL_ID:?AWS_COGNITO_USER_POOL_ID is required}
+      AWS_COGNITO_CLIENT_ID: ${AWS_COGNITO_CLIENT_ID:?AWS_COGNITO_CLIENT_ID is required}
+      AWS_COGNITO_CLIENT_SECRET: ${AWS_COGNITO_CLIENT_SECRET:?AWS_COGNITO_CLIENT_SECRET is required}
     deploy:
       resources:
         limits:
           cpus: '1.0'
           memory: 512M
+    networks:
+      - spray-network
+    restart: always
 
-  # GraphQL API
   graphql-api:
     image: swczk/pulveriza-nenem-graphql-api:latest
     container_name: spray-graphql-api-prod
     environment:
-      MONGO_URI: ${MONGO_URI}
-      MONGO_DATABASE: ${MONGO_DATABASE}
+      MONGO_URI: ${MONGO_URI:?MONGO_URI is required}
+      MONGO_DATABASE: ${MONGO_DATABASE:?MONGO_DATABASE is required}
       PORT: 8080
     networks:
       - spray-network
@@ -60,11 +49,6 @@ services:
           cpus: '0.5'
           memory: 256M
 
-
 networks:
   spray-network:
     driver: bridge
-
-# Environment variables loaded from .env.prod
-# Configure .env.prod with your MongoDB Atlas and remote PostgreSQL credentials
-# Run: docker compose --env-file .env.prod -f compose.prod.yaml up
