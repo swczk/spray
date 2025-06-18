@@ -1,7 +1,7 @@
 services:
   frontend:
-    image: swczk/pulveriza-nenem-frontend:latest
-    container_name: spray-frontend-prod
+    image: swczk/spray-frontend:latest
+    container_name: spray-frontend
     ports:
       - "80:80"
     depends_on:
@@ -12,8 +12,8 @@ services:
     restart: always
 
   spring-api:
-    image: swczk/pulveriza-nenem-spring-api:latest
-    container_name: spray-spring-api-prod
+    image: swczk/spray-spring-api:latest
+    container_name: spray-spring-api
     environment:
       SPRING_PROFILES_ACTIVE: production
       SPRING_DATASOURCE_URL: ${DATABASE_URL:?DATABASE_URL is required}
@@ -34,8 +34,8 @@ services:
     restart: always
 
   graphql-api:
-    image: swczk/pulveriza-nenem-graphql-api:latest
-    container_name: spray-graphql-api-prod
+    image: swczk/spray-graphql-api:latest
+    container_name: spray-graphql-api
     environment:
       MONGO_URI: ${MONGO_URI:?MONGO_URI is required}
       MONGO_DATABASE: ${MONGO_DATABASE:?MONGO_DATABASE is required}

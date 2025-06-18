@@ -13,7 +13,7 @@ cd "$PROJECT_ROOT"
 
 TAG=${1:-latest}
 DOCKER_USERNAME="swczk"
-PROJECT_NAME="pulveriza-nenem"
+PROJECT_NAME="spray"
 
 echo "🚀 Iniciando build e deploy para Docker Hub..."
 echo "Diretório do projeto: $PROJECT_ROOT"
@@ -39,29 +39,29 @@ build_and_push() {
     local context=$2
     local dockerfile=${3:-Dockerfile}
     local image_name="$DOCKER_USERNAME/$PROJECT_NAME-$service:$TAG"
-    
+
     echo "🔨 Building $service..."
     echo "Context: $context"
     echo "Dockerfile: $dockerfile"
     echo "Image: $image_name"
-    
+
     # Build da imagem
     docker build -t "$image_name" -f "$context/$dockerfile" "$context"
-    
+
     # Tag como latest se não for latest
     if [ "$TAG" != "latest" ]; then
         docker tag "$image_name" "$DOCKER_USERNAME/$PROJECT_NAME-$service:latest"
     fi
-    
+
     # Push para Docker Hub
     echo "📤 Pushing $image_name..."
     docker push "$image_name"
-    
+
     if [ "$TAG" != "latest" ]; then
         echo "📤 Pushing $DOCKER_USERNAME/$PROJECT_NAME-$service:latest..."
         docker push "$DOCKER_USERNAME/$PROJECT_NAME-$service:latest"
     fi
-    
+
     echo "✅ $service concluído!"
     echo ""
 }
@@ -78,17 +78,17 @@ docker_login
 # Build e push do Spring Boot API
 echo "🏗️  SPRING BOOT API"
 echo "================================"
-build_and_push "spring-api" "./backend-spring" "Dockerfile"
+build_and_push "spring-api" "./spring-api" "Dockerfile"
 
 # Build e push do GraphQL API
 echo "🏗️  GRAPHQL API"
 echo "================================"
-build_and_push "graphql-api" "./backend-graphql" "Dockerfile"
+build_and_push "graphql-api" "./graphql-api" "Dockerfile"
 
 # Build e push do Frontend
 echo "🏗️  FRONTEND"
 echo "================================"
-build_and_push "frontend" "./frontend" "Dockerfile.prod"
+build_and_push "frontend" "./frontend" "Dockerfile"
 
 echo "🎉 Build e deploy concluídos com sucesso!"
 echo ""
@@ -98,7 +98,7 @@ echo "  - $DOCKER_USERNAME/$PROJECT_NAME-graphql-api:$TAG"
 echo "  - $DOCKER_USERNAME/$PROJECT_NAME-frontend:$TAG"
 echo ""
 echo "🚀 Para usar em produção:"
-echo "  docker compose -f compose.prod.yaml up -d"
+echo "  docker compose -f compose.yaml up -d"
 echo ""
 echo "🔍 Para verificar as imagens:"
 echo "  docker images | grep $DOCKER_USERNAME/$PROJECT_NAME"

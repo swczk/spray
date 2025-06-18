@@ -87,4 +87,4 @@ fi
 
 echo ""
 echo "🚀 Para deploy em produção:"
-echo "docker compose -f compose.prod.yaml --env-file .env.prod up -d"
+echo "docker compose -f compose.yaml --env-file .env.prod up -d"
