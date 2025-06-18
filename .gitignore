@@ -1,9 +1,5 @@
 # Environment files (keep out of version control for security)
 .env
-.env.dev
-.env.prod
-.env.production
-.env.development
 
 # Docker
 .docker/
