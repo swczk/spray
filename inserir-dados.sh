@@ -105,13 +105,13 @@ echo "Configurando conexões com bancos de dados..."
 # Verificar se é ambiente de desenvolvimento ou produção
 if [ -f ".env.dev" ] && docker ps | grep -q "spray-postgres"; then
     echo -e "${BLUE}Detectado ambiente de DESENVOLVIMENTO${NC}"
-    DB_HOST="localhost"
-    DB_PORT="5432"
-    DB_NAME="tacdb"
-    DB_USER="tacdb_owner"
-    DB_PASS="npg_lUXQNZzx2J1d"
-    MONGO_URI="mongodb://admin:password@localhost:27017"
-    MONGO_DB="pulverizacao"
+    DB_HOST=${DB_HOST:-"localhost"}
+    DB_PORT=${DB_PORT:-"5432"}
+    DB_NAME=${DB_NAME:-"tacdb"}
+    DB_USER=${DB_USER:-"tacdb_owner"}
+    DB_PASS=${DB_PASS:-"npg_lUXQNZzx2J1d"}
+    MONGO_URI=${MONGO_URI:-"mongodb://admin:password@localhost:27017"}
+    MONGO_DB=${MONGO_DB:-"pulverizacao"}
     ENV_TYPE="dev"
 elif [ -f ".env.prod" ]; then
     echo -e "${BLUE}Detectado ambiente de PRODUÇÃO${NC}"
@@ -123,10 +123,10 @@ elif [ -f ".env.prod" ]; then
         DB_PORT=$(echo $DATABASE_URL | sed -n 's/.*:\([0-9]*\)\/.*/\1/p')
         DB_NAME=$(echo $DATABASE_URL | sed -n 's/.*\/\([^?]*\).*/\1/p')
     fi
-    DB_USER=$POSTGRES_USER
-    DB_PASS=$POSTGRES_PASSWORD
-    MONGO_URI=$MONGO_URI
-    MONGO_DB=$MONGO_DATABASE
+    DB_USER=${POSTGRES_USER:-$DB_USER}
+    DB_PASS=${POSTGRES_PASSWORD:-$DB_PASS}
+    MONGO_URI=${MONGO_URI:-$MONGO_URI}
+    MONGO_DB=${MONGO_DATABASE:-$MONGO_DB}
     ENV_TYPE="prod"
 else
     echo -e "${RED}❌ Não foi possível detectar o ambiente. Certifique-se de ter .env.dev ou .env.prod${NC}"

@@ -25,19 +25,19 @@ echo "==========================================="
 # Detectar ambiente
 if docker ps | grep -q "spray-postgres"; then
     echo "Ambiente: Desenvolvimento (local)"
-    DB_HOST="localhost"
-    DB_PORT="5432"
-    DB_NAME="tacdb"
-    DB_USER="tacdb_owner"
-    DB_PASS="npg_lUXQNZzx2J1d"
+    DB_HOST=${DB_HOST:-"localhost"}
+    DB_PORT=${DB_PORT:-"5432"}
+    DB_NAME=${DB_NAME:-"tacdb"}
+    DB_USER=${DB_USER:-"tacdb_owner"}
+    DB_PASS=${DB_PASS:-"npg_lUXQNZzx2J1d"}
 elif [ -f ".env.prod" ]; then
     echo "Ambiente: Produção"
     source .env.prod
     DB_HOST=$(echo $DATABASE_URL | sed -n 's/.*\/\/\([^:]*\):.*/\1/p')
     DB_PORT=$(echo $DATABASE_URL | sed -n 's/.*:\([0-9]*\)\/.*/\1/p')
     DB_NAME=$(echo $DATABASE_URL | sed -n 's/.*\/\([^?]*\).*/\1/p')
-    DB_USER=$POSTGRES_USER
-    DB_PASS=$POSTGRES_PASSWORD
+    DB_USER=${POSTGRES_USER:-$DB_USER}
+    DB_PASS=${POSTGRES_PASSWORD:-$DB_PASS}
 else
     echo -e "${RED}Erro: Ambiente não detectado${NC}"
     exit 1

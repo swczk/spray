@@ -22,15 +22,15 @@ NC='\033[0m'
 echo "Carregando configurações dos bancos..."
 
 # PostgreSQL Neon
-PG_HOST="ep-wandering-firefly-ac208w7e-pooler.sa-east-1.aws.neon.tech"
-PG_PORT="5432"
-PG_DB="tacdb"
-PG_USER="tacdb_owner"
-PG_PASS="npg_lUXQNZzx2J1d"
+PG_HOST=${PG_HOST:-"ep-wandering-firefly-ac208w7e-pooler.sa-east-1.aws.neon.tech"}
+PG_PORT=${PG_PORT:-"5432"}
+PG_DB=${PG_DB:-"tacdb"}
+PG_USER=${PG_USER:-"tacdb_owner"}
+PG_PASS=${PG_PASS:-"npg_lUXQNZzx2J1d"}
 
 # MongoDB Atlas
-MONGO_URI="mongodb+srv://dudu:TusEUdoJnMrDkL2R@cluster0.afqf6od.mongodb.net/pulverizacao?retryWrites=true&w=majority&appName=Cluster0"
-MONGO_DB="pulverizacao"
+MONGO_URI=${MONGO_URI:-"mongodb+srv://dudu:TusEUdoJnMrDkL2R@cluster0.afqf6od.mongodb.net/pulverizacao?retryWrites=true&w=majority&appName=Cluster0"}
+MONGO_DB=${MONGO_DB:-"pulverizacao"}
 
 echo -e "${GREEN}✓ Configurações carregadas${NC}"
 echo ""

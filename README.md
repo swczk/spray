@@ -37,7 +37,7 @@ O projeto é composto por três principais componentes:
 ## 📁 Estrutura do Projeto
 
 ```
-pulveriza-nenem/
+spray/
 ├── frontend/                 # Aplicação Vue.js
 │   ├── src/
 │   │   ├── components/      # Componentes reutilizáveis
@@ -48,7 +48,7 @@ pulveriza-nenem/
 │   ├── Dockerfile.dev      # Docker para desenvolvimento
 │   ├── Dockerfile.prod     # Docker para produção
 │   └── package.json
-├── backend-spring/          # API REST Spring Boot
+├── spring-api/              # API REST Spring Boot
 │   ├── src/main/java/br/edu/utfpr/api1/
 │   │   ├── controller/     # Controllers REST
 │   │   ├── model/          # Entidades JPA
@@ -57,7 +57,7 @@ pulveriza-nenem/
 │   │   ├── dto/            # Data Transfer Objects
 │   │   └── security/       # Configuração de segurança
 │   └── Dockerfile
-├── backend-graphql/         # API GraphQL em Go
+├── graphql-api/             # API GraphQL em Go
 │   ├── graphql/            # Schema e resolvers
 │   ├── models/             # Modelos de dados
 │   ├── database/           # Conexão com MongoDB
@@ -82,7 +82,7 @@ pulveriza-nenem/
 1. **Clone o repositório**
 ```bash
 git clone <repository-url>
-cd pulveriza-nenem
+cd spray
 ```
 
 2. **Configure as variáveis de ambiente**
