@@ -7,3 +7,6 @@
 [submodule "frontend"]
 	path = frontend
 	url = git@github.com:swczk/spray-frontend.git
+[submodule "message-consumer"]
+	path = message-consumer
+	url = git@github.com:swczk/spray-message-consumer.git

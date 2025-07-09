@@ -24,6 +24,12 @@ services:
       AWS_COGNITO_USER_POOL_ID: ${AWS_COGNITO_USER_POOL_ID:?AWS_COGNITO_USER_POOL_ID is required}
       AWS_COGNITO_CLIENT_ID: ${AWS_COGNITO_CLIENT_ID:?AWS_COGNITO_CLIENT_ID is required}
       AWS_COGNITO_CLIENT_SECRET: ${AWS_COGNITO_CLIENT_SECRET:?AWS_COGNITO_CLIENT_SECRET is required}
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: ${RABBITMQ_USER:-admin}
+      SPRING_RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD:-admin123}
+    depends_on:
+      - rabbitmq
     deploy:
       resources:
         limits:
@@ -49,6 +55,50 @@ services:
           cpus: '0.5'
           memory: 256M
 
+  rabbitmq:
+    image: rabbitmq:3.12-management
+    container_name: spray-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-admin}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:-admin123}
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - spray-network
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+
+  message-consumer:
+    image: swczk/spray-message-consumer:latest
+    container_name: spray-message-consumer
+    environment:
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: ${RABBITMQ_USER:-admin}
+      SPRING_RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD:-admin123}
+    ports:
+      - "8082:8082"
+    depends_on:
+      - rabbitmq
+    networks:
+      - spray-network
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+
 networks:
   spray-network:
     driver: bridge
+
+volumes:
+  rabbitmq_data:

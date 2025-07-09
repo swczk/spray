@@ -90,12 +90,22 @@ echo "🏗️  FRONTEND"
 echo "================================"
 build_and_push "frontend" "./frontend" "Dockerfile"
 
+# Build e push do Message Consumer
+echo "🏗️  MESSAGE CONSUMER"
+echo "================================"
+echo "🔨 Building Maven project for message-consumer..."
+cd "./message-consumer"
+mvn clean package -DskipTests || { echo "❌ Falha no build Maven do consumer"; exit 1; }
+cd ".."
+build_and_push "message-consumer" "./message-consumer" "Dockerfile"
+
 echo "🎉 Build e deploy concluídos com sucesso!"
 echo ""
 echo "📋 Imagens criadas:"
 echo "  - $DOCKER_USERNAME/$PROJECT_NAME-spring-api:$TAG"
 echo "  - $DOCKER_USERNAME/$PROJECT_NAME-graphql-api:$TAG"
 echo "  - $DOCKER_USERNAME/$PROJECT_NAME-frontend:$TAG"
+echo "  - $DOCKER_USERNAME/$PROJECT_NAME-message-consumer:$TAG"
 echo ""
 echo "🚀 Para usar em produção:"
 echo "  docker compose -f ${COMPOSE_FILE:-compose.yaml} up -d"
